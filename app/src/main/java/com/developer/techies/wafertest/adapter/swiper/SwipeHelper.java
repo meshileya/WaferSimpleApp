@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -224,6 +225,7 @@ public class SwipeHelper extends ItemTouchHelper.SimpleCallback {
         }
 
         public boolean onClick(float x, float y){
+            Log.e("POSITION", String.valueOf(pos) + " sdfs");
             if (clickRegion != null && clickRegion.contains(x, y)){
                 clickListener.onClick(pos);
                 return true;

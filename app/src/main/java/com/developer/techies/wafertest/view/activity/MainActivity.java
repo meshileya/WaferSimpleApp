@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
@@ -18,6 +19,7 @@ import com.developer.techies.wafertest.adapter.CountryListAdapter;
 import com.developer.techies.wafertest.adapter.swiper.SwipeHelper;
 import com.developer.techies.wafertest.model.CountryModel;
 import com.developer.techies.wafertest.utils.listener.ItemListener;
+import com.developer.techies.wafertest.utils.listener.UnderlayButtonClickListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ItemListener<CountryModel> {
+public class MainActivity extends AppCompatActivity implements ItemListener<CountryModel>, UnderlayButtonClickListener {
 
     CountryListAdapter adapter;
     RecyclerView recyclerView;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements ItemListener<Coun
                 adapter.removeItem(viewHolder.getAdapterPosition());
                 underlayButtons.add(new SwipeHelper.UnderlayButton(
                         Color.parseColor("#9024a2"),
-                        null
+                        MainActivity.this
                 ));
             }
         };
@@ -123,5 +125,10 @@ public class MainActivity extends AppCompatActivity implements ItemListener<Coun
     public void onItemClick(CountryModel v) {
         //ToDo Display more details of the country other screen.
 
+    }
+
+    @Override
+    public void onClick(int pos) {
+        Log.e("POSITION CLICKED", "item at position " + pos + " clicked");
     }
 }
